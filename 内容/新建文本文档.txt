@@ -1,0 +1,54 @@
+1.   addEventListener() 方法，事件监听
+
+你可以使用 removeEventListener() 方法来移除事件的监听。
+
+2  v-on:click="nowIndex={{index}}     要将对应的用户删除，想用传回index值的方式判断是哪个用户
+
+3  val() 方法返回或设置被选元素的值。
+$(this).next() 当前元素同级的下个元素，而非子元素
+$(this).children() 是当前元素的下一级元素的集合，就是子元素的集合，而不管子元素的后代元素
+$(this).prev()当前元素同级的上个元素，而非子元素
+
+3.   result = window.confirm(message);
+message 是要在对话框中显示的可选字符串。
+result 是一个布尔值，表示是选择确定还是取消 (true表示OK)。
+
+
+4.     // jQuery中  添加
+    // 方法1: $('html标签')
+    // 方法2: $('元素').html('html标签')
+    // 方法3: 插入到元素里面的后面
+    // append(content)  父元素.append(子元素)
+    // appendTo(content) 子元素.appendTo(父元素)
+     // 方法4: 插入到元素里面的前面
+    // 父元素.prepend(子元素)     // 子元素.prependTo(父元素)
+   // 方法5: 插入到某个元素外面的后面/前面
+    // 插入到某个元素外面的后面 after
+    // 插入到某个元素外面的前面 before
+
+5.   // jQuery中  删除
+ //  元素.remove() 删除自己 逐个的删除
+// 父元素.empty() // 清空父元素中的所有子元素
+
+6.   // jQuery中  替换
+ // 元素.replaceWith(替换元素)
+7.   // jQuery中  查找
+  // children() 获取某个元素的所有子元素
+   // 元素.find(后代元素选择器)
+    // parent() 某个元素的父元素
+    // parents() 某个元素的祖元素
+  示例::       $('button').click(function () {
+                console.log($('.box').children())
+               })
+
+8.   setInterval() 方法可按照指定的周期（以毫秒计）来调用函数或计算表达式。
+
+setInterval() 方法会不停地调用函数，直到 clearInterval() 被调用或窗口被关闭。由 setInterval() 返回的 ID 值
+可用作 clearInterval() 方法的参数。
+
+
+9.     some() 
+。
+some() 方法会依次执行数组的每个元素：
+如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。
+如果没有满足条件的元素，则返回false。

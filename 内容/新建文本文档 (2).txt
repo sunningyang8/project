@@ -1,0 +1,9 @@
+npm install -g @vue/cli
+vue create vuesyntax
+3
+
+
+
+
+
+npm install axios
