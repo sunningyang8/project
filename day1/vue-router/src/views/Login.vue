@@ -32,10 +32,11 @@
                     </a-form-item>
 
                     <a-form-item :wrapperCol="{ span: 24 }" name="password">
-                      <a-input-password size="large" placeholder="请输入密码"
-                       v-model:value="form.password"
+                      <a-input-password
+                        size="large"
+                        placeholder="请输入密码"
+                        v-model:value="form.password"
                       >
-                       
                         <template #prefix
                           ><LockOutlined style="color: rgba(0, 0, 0, 0.25)"
                         /></template>
@@ -78,7 +79,13 @@
             </a-row>
             <a-row class="login-forget queding">
               <a-col :span="24">
-                <a-button block size="lagrge" type="primary" @click="handleSubmit">确定</a-button>
+                <a-button
+                  block
+                  size="lagrge"
+                  type="primary"
+                  @click="handleSubmit"
+                  >确定</a-button
+                >
               </a-col>
             </a-row>
 
@@ -120,41 +127,64 @@ import {
   WeiboCircleOutlined,
   QqOutlined,
 } from "@ant-design/icons-vue";
-
+import { message } from "ant-design-vue";
 export default {
   data() {
     return {
       form: {
-          username:"",
-          password:""
+        username: "admin",
+        password: "123456",
       },
       rules: {
         // 给那个字段添加什么规则
         username: [
           // required 必须的
           // trigger 啥时候触发
-          { required: true, message: '请输入用户名', trigger: 'blur' },
-          { min: 4, max: 16, message: '长度在4-16个字符之间', trigger: 'blur' },
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          { min: 4, max: 16, message: "长度在4-16个字符之间", trigger: "blur" },
         ],
-         password: [
+        password: [
           // required 必须的
           // trigger 啥时候触发
-          { required: true, message: '请输入密码', trigger: 'blur' },
-          { min: 6, max: 16, message: '长度在6-16个字符之间', trigger: 'blur' },
-        ]
-      }
+          { required: true, message: "请输入密码", trigger: "blur" },
+          { min: 6, max: 16, message: "长度在6-16个字符之间", trigger: "blur" },
+        ],
+      },
     };
   },
-   methods: {
-    handleSubmit(){
-     this.$refs.loginForm.validate().then(() => {
-          console.log('values', this.form);
+  methods: {
+    handleSubmit() {
+      this.$refs.loginForm
+        .validate()
+        .then(() => {
+          let params = {
+            username: this.form.username,
+            password: this.form.password,
+          };
+          this.$axios
+            .post("/login", params)
+            .then(response => {
+             let { data, meta } = response.data;
+              if (meta.status == 400) {
+                return message.error(meta.msg);
+              }
+              if (meta.status == 200) {
+                message.success(meta.msg);
+                window.sessionStorage.setItem("token", data.token);
+                //  路由跳转到首页
+                this.$router.push("/home");
+              }
+            //  console.log(response);
+            })
+            .catch(err => {
+              console.log(err);
+            });
         })
-        .catch(error => {
-          console.log('error', error);
+        .catch((error) => {
+          console.log("error", error);
         });
-    }
-  },
+    },
+  }, 
   components: {
     UserOutlined,
     LockOutlined,
