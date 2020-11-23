@@ -8,11 +8,9 @@
       </div>
       <a-menu
         mode="inline"
-        v-model:openKeys="openKeys"
-        v-model:selectedKeys="selectedKeys"
         :style="{ height: '100%', borderRight: 0 }"
       >
-        <a-sub-menu key="sub1">
+        <a-sub-menu key="">
           <template #title>
             <div>
               <user-outlined />
@@ -20,17 +18,16 @@
             </div>
           </template>
           <a-menu-item key="1">
-            <span
-              ><router-link to="/userlist">用户列表</router-link>
-            </span></a-menu-item
+          
+              <router-link to="/userlist">用户列表</router-link>
+           </a-menu-item
           >
           <a-menu-item key="2">
-            <span
-              ><router-link to="/user">用表</router-link>
-            </span></a-menu-item
+            <router-link to="/user">用表</router-link>
+            </a-menu-item
           >
         </a-sub-menu>
-        <a-sub-menu key="sub2">
+        <a-sub-menu key="">
           <template #title>
             <div>
               <laptop-outlined />
@@ -39,7 +36,7 @@
           </template>
           <a-menu-item key="5">option5</a-menu-item>
         </a-sub-menu>
-        <a-sub-menu key="sub3">
+        <a-sub-menu key="">
           <template #title>
             <div>
               <notification-outlined />
@@ -101,9 +98,9 @@ export default {
   },
   data() {
     return {
-      selectedKeys: ["1"],
+   
       collapsed: false,
-      openKeys: ["sub1"],
+  
     };
   },
   methods: {
